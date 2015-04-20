@@ -56,8 +56,11 @@ To install Nanoscope, clone the git repo and run
 the installation script for the third-party software:
 
 ```
-git clone [...];
-cd nanoscope/sw;
+git clone https://kuleshov@bitbucket.org/kuleshov/nanoscope.git;
+cd nanoscope;
+git submodule init;
+git submodule update;
+cd sw;
 bash install.sh
 ```
 
