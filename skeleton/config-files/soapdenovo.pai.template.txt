@@ -1,0 +1,4 @@
+[LIB]
+reverse_seq=0
+asm_flags=3
+rank=1

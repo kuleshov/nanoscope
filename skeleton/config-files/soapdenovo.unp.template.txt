@@ -1,0 +1,3 @@
+[LIB]
+asm_flags=3
+rank=1
