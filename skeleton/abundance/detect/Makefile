@@ -5,12 +5,11 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	make taxa.abundances
-	touch $@
 
 clean:
-	-rm *.done taxa.* ctg.*
+	-rm taxa.* ctg.*
 
 #------------------------------------------------------------------------------
 # Abundance estimation

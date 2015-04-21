@@ -5,9 +5,8 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	make haplotypes.txt
-	touch $@
 
 clean:
 	-rm *.done *.bam.* variants.* haplotypes.txt

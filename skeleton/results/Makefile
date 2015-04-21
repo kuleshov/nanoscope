@@ -1,12 +1,12 @@
 # COMPILATION OF FINAL RESULTS FROM A NANOSCOPE RUN
 # Input files: All previous stages must be completed
 
-all.done all:
+all:
+	make clean
 	make quast taxa haplotypes
-	touch all.done
 
 clean:
-	-rm -r all.done contigs.fasta asm.report.txt taxa.*
+	-rm -r contigs.fasta asm.report.txt taxa.*
 
 quast:
 	ln -s ../asm/contigs.fasta

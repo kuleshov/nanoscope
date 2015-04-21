@@ -5,19 +5,10 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
-	make align.done detect.done
-	touch $@
+all:
+	make -C align
+	make -C detect
 
 clean:
-	-rm *.done
-
-#------------------------------------------------------------------------------
-# Substages
-
-align.done:
-	make -C align
-	touch $@
-
-detect.done: align.done
-	make -C detect
+	make -C align clean
+	make -C detect clean

@@ -6,18 +6,15 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	if [ -n "$(SHORT_READ_PAIRED_FASTQ1)" ] ||  [ -n "$(SHORT_READ_UNPAIRED_FASTQ)" ]; then \
-	make config.txt sparse-pregraph.done contig.done map.done scaff.done && \
-	ln -s short.scafSeq short.fasta; \
+	make config.txt sparse-pregraph.done contig.done map.done scaff.done short.fasta; \
 	else \
 	make skip; \
 	fi
-	touch $@
 
 skip:
-	touch short.fasta
-	touch all.done
+	[ -e short.fasta ] || touch short.fasta
 
 clean:
 	-rm config.txt *.done short.fasta
@@ -54,3 +51,5 @@ scaff.done:
 	$(SOAP) scaff -g short -p $(PROCESSORS) $(SP_SCAFF_OPT) 1>scaff.stdout 2>scaff.stderr
 	touch $@
 
+short.fasta: short.scafSeq
+	ln -s $< $@

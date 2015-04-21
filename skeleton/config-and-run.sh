@@ -40,7 +40,7 @@ export PRE_ASM_CONTIGS="{contigs}"
 ## Assembly:
 
 # Set this to "True" to skip assembly
-# Long reads will be used as contigs for later stages
+# You must provide your own pre-assembled contigs in this case
 export SKIP_ASM="False"
 
 # Set this to "True" to jointly assemble short and long reads with SPAdes
@@ -56,7 +56,12 @@ export SP_CONTIG_OPT=""
 export SP_MAP_OPT=""
 export SP_SCAFF_OPT="-F"
 
-# Celera assembler settings: see ./config-files/celera.spec
+# Celera assembler settings:
+
+# Library flags:
+export CEL_LIB_FLAGS="-nonrandom -technology none -feature forceBOGunitigger 0 -feature doNotTrustHomopolymerRuns 0 -feature discardReadsWithNs 0 -feature doNotQVTrim 0 -feature deletePerfectPrefixes 0 -feature doNotOverlapTrim 0 -feature isNotRandom 0 -feature fastqQualityValues sanger"
+
+# For all other options, see the spec file at: ./config-files/celera.spec
 
 # SPAdes options:
 export SPADES_OPT="--only-assembler -k 127 -m 100"

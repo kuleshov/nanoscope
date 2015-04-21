@@ -4,15 +4,16 @@
 # 	SHORT_READ_PAIRED_FASTQ2, SHORT_READ_UNPAIRED_FASTQ
 # Output files: sr.sorted.bam sr.sorted.bam.bai
 
+SHELL=/bin/bash -e -o pipefail
+
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	make sr.sorted.q30.bam.bai
-	touch $@
 
 clean:
-	-rm all.done rm ref.* *.bam.*
+	-rm ref.* *.bam.*
 
 #------------------------------------------------------------------------------
 # Implementation

@@ -8,7 +8,8 @@
 #------------------------------------------------------------------------------
 # General instructions
 
-all.done all:
+all:
+	-rm contigs.fasta
 	if [ "$(SKIP_ASM)" = "True" ]; then \
 	  make skip; \
 	elif [ "$(USE_SPADES)" = "True" ]; then \
@@ -20,7 +21,6 @@ all.done all:
 	  make -C joint && \
 	  ln -s joint/joint.fasta contigs.fasta; \
 	fi
-	touch all.done
 
 skip:
 	ln -s $(PRE_ASM_CONTIGS) contigs.fasta

@@ -2,6 +2,8 @@
 # Input files: CTGS
 # Output files: lca.results lca.summary
 
+SHELL=/bin/bash -e -o pipefail
+
 #------------------------------------------------------------------------------
 # High-level commands
 
@@ -9,10 +11,9 @@ CTGS:=../asm/contigs.fasta
 
 all:
 	make lca.summary
-	touch all.done
 
 clean:
-	-rm ctgs.split.* *.results lca.* all.done
+	-rm ctgs.split.* *.results lca.*
 
 #------------------------------------------------------------------------------
 # Details
@@ -27,6 +28,7 @@ blastn.results: $(CTGS) blast_data taxonomy.txt
 	-rm -f ctgs.split.*
 	cat $(CTGS) | python $(BIN)/format-fasta.py | split -d -l 1000 - ctgs.split.
 	ls ctgs.split* | $(PARALLEL) -j $(PROCESSORS) $(PYTHON) $(FCPDIR)/BLASTN.py $(BLASTN) {} {}.blastn.results
+	test -s ctgs.split.00.blastn.results
 	cat ctgs.split.*.blastn.results > $@.tmp
 	rm *.split.*
 	mv $@.tmp $@

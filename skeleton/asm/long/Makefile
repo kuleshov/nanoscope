@@ -6,21 +6,18 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	if [ -n "$(LONG_READ_FASTQ)" ]; then \
-	make run && \
-	ln -s ./run/9-terminator/long.ctg.fasta long.fasta; \
+	make run long.fasta; \
 	else \
 	make skip; \
 	fi
-	touch $@
 
 skip:
-	touch long.fasta
-	touch all.done
+	[ -e long.fasta ] || touch long.fasta
 
 clean:
-	-rm -r celera.spec input.frg run long.fasta all.done
+	-rm -r celera.spec input.frg run long.fasta 
 
 #------------------------------------------------------------------------------
 # Assembler instructions
@@ -28,19 +25,9 @@ clean:
 input.frg: $(LONG_READ_FASTQ)
 	ln -s ../../config-files/celera.spec
 	$(CELDIR)/fastqToCA \
-	  -nonrandom \
 	  -reads $< \
 	  -libraryname 0 \
-	  -technology none \
-	  -feature forceBOGunitigger 0 \
-	  -feature doNotTrustHomopolymerRuns 0 \
-	  -feature discardReadsWithNs 0 \
-	  -feature doNotQVTrim 0 \
-	  -feature deletePerfectPrefixes 0 \
-	  -feature doNotOverlapTrim 0 \
-	  -feature isNotRandom 0 \
-	  -feature fastqQualityValues sanger \
-	  > $@
+	  $(CEL_LIB_FLAGS) > $@
 
 run: input.frg
 	-rm -r $@.tmp
@@ -54,3 +41,6 @@ run: input.frg
 	  cnsConcurrency=$(PROCESSORS) \
 	  $< > asm.out 2>&1
 	mv $@.tmp $@
+
+long.fasta: run/9-terminator/long.ctg.fasta
+	ln -s $< $@

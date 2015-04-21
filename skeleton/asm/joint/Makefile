@@ -5,21 +5,19 @@
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	if [ "$(SKIP_MINIMUS)" = "True" ]; then \
 	make skip; \
 	else \
 	make joint.fasta; \
 	fi
-	touch all.done
 
 skip:
 	make ctgs.filtered.fasta
 	ln -s ctgs.filtered.fasta joint.fasta
-	touch all.done
 
 clean:
-	-rm *.fasta out.afg *.seq all.done
+	-rm *.fasta out.afg *.seq
 
 #------------------------------------------------------------------------------
 # Assembler instructions

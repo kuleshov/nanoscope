@@ -42,11 +42,6 @@ def main():
   run_parser.add_argument('--skip-minimus', help='Skip minimus contig merging', action='store_true')
   run_parser.add_argument('--spades', help='Assemble short and long reads with spades', action='store_true')
 
-  # Status
-
-  status_parser = subparsers.add_parser('status', help='Display pipeline status')
-  status_parser.set_defaults(func=status)
-
   # Parse args
   args = parser.parse_args()
   args.func(args)
@@ -98,8 +93,9 @@ def run(args):
   cmd = "cd %s; " % args.folder
   if args.restart:
     cmd += "make clean; "
-  target_stage = args.up_to + ".done"
-  cmd += "bash config-and-run.sh %s PROCESSORS=%d" % (target_stage, args.processors)
+  target_stage_names = STAGES[:STAGES.index(args.up_to)+1]
+  target_stages = ' '.join([stage + '.run' for stage in target_stage_names])
+  cmd += "bash config-and-run.sh %s PROCESSORS=%d" % (target_stages, args.processors)
   if args.skip_asm:
     cmd += ' SKIP_ASM="True"'
   if args.skip_minimus:
@@ -112,9 +108,6 @@ def run(args):
   return_code = subprocess.call(cmd, shell=True)
   if return_code != 0:
     exit("Pipeline execution failed in %s" % args.folder)
-
-def status(args):
-  pass
 
 # ----------------------------------------------------------------------------
 # Helpers

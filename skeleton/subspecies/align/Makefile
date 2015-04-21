@@ -2,15 +2,16 @@
 # Input files: REF and LONG_READ_FASTQ
 # Output files: lr.sorted.bam lr.sorted.bam.bai
 
+SHELL=/bin/bash -e -o pipefail
+
 #------------------------------------------------------------------------------
 # High-level commands
 
-all.done all:
+all:
 	make lr.sorted.bam.bai
-	touch all.done
 
 clean:
-	-rm all.done ref.* *.bam.*
+	-rm ref.* *.bam.*
 
 #------------------------------------------------------------------------------
 # Implementation

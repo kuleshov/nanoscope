@@ -9,7 +9,7 @@
 # are handled by GNU Make.
 #
 # To start the pipeline manually, one can also type:
-# 	bash config.sh
+# 	bash config-and-run.sh
 # This will load the configuration and start the pipeline by invoking make.
 # To reset the pipeline, one can type:
 # 	make clean
@@ -28,28 +28,26 @@ endif
 # Commands:
 
 all:
-	echo $(PROCESSORS)
-	make results.done
-
-asm.done:
 	make -C asm
-	touch $@
-
-classify.done: asm.done
 	make -C classify
-	touch $@
-
-subspecies.done: classify.done
 	make -C subspecies
-	touch $@
-
-abundance.done: subspecies.done
 	make -C abundance
-	touch $@
-
-results.done: abundance.done
 	make -C results
-	touch $@
+
+asm.run:
+	make -C asm
+
+classify.run:
+	make -C classify
+
+subspecies.run:
+	make -C subspecies
+
+abundance.run: 
+	make -C abundance
+
+results.run:
+	make -C results
 
 clean:
 	-rm *.done
