@@ -30,7 +30,8 @@ cd ..
 
 # COMPILE MUMMER
 cd ./MUMmer3.23-64bit-mod
-make clean
+# make clean
+mkdir aux_bin
 make check
 make CPPFLAGS="-O3 -DSIXTYFOURBITS"
 make install
@@ -39,8 +40,10 @@ cd ..
 
 # COMPILE AMOS
 cd ./amos-3.1.0
-make clean
+# make clean
 export NUCMER=$MUMMERDIR/nucmer
+export DELTAFILTER=$MUMMERDIR/delta-filter
+export SHOWCOORDS=$MUMMERDIR/show-coords
 ./configure
 make 
 make install

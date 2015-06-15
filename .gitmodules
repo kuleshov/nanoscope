@@ -1,3 +1,3 @@
 [submodule "bin/lens"]
 	path = bin/lens
-	url = git@bitbucket.org:kuleshov/lens.git
+	url = https://bitbucket.org/kuleshov/lens.git
