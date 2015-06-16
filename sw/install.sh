@@ -39,6 +39,7 @@ MUMMERDIR=`pwd`
 cd ..
 
 # COMPILE AMOS
+tar -zxvf amos-3.1.0.tar.gz
 cd ./amos-3.1.0
 # make clean
 export NUCMER=$MUMMERDIR/nucmer
