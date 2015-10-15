@@ -1,5 +1,13 @@
-Nanoscope: metagenomic analysis pipeline for synthetic long reads
-================================================================
+Nanoscope
+=========
+
+Metagenomic analysis pipeline for synthetic long reads. Nanoscope was originally introduced in
+
+```
+High-resolution structure of the human microbiome revealed with synthetic long reads.
+Volodymyr Kuleshov, Chao Jiang, Wenyu Zhou, Fereshteh Jahanbani, Serafim Batzoglou, Michael Snyder. 
+Nature Biotechnology, 2015.
+```
 
 ## Installation
 
@@ -56,7 +64,7 @@ To install Nanoscope, clone the git repo and run
 the installation script for the third-party software:
 
 ```
-git clone https://kuleshov@bitbucket.org/kuleshov/nanoscope.git;
+git clone https://github.com/kuleshov/nanoscope.git;
 cd nanoscope;
 git submodule init;
 git submodule update;
