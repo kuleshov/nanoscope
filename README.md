@@ -1,7 +1,7 @@
 Nanoscope
 =========
 
-Metagenomic analysis pipeline for synthetic long reads. Nanoscope was originally introduced in
+Metagenomic analysis pipeline for synthetic long reads. Nanoscope is introduced in
 
 ```
 High-resolution structure of the human microbiome revealed with synthetic long reads.
@@ -13,7 +13,7 @@ Nature Biotechnology, 2015.
 
 ### Requirements
 
-Nanoscope assumes that the following basic UNIX and genomic analysis utilities be installed
+Nanoscope assumes that the following basic UNIX and genomic analysis utilities are installed
 on your system:
 
 * GNU awk
@@ -45,7 +45,9 @@ The Nanoscope uses the following software in its analysis:
 
 The source code of these programs is part of the git repository;
 it needs to be compiled during the installation process.
-These programs' dependecies are part of a standard Linux setup;
+Several programs have been modified to work with long reads; therefore
+you need to specifically compile the source code included in this package.
+The programs' dependecies are part of a standard Linux setup;
 if some dependecies are missing, you will be notified at installation time.
 
 A Nanoscope installation uses approximately 50G of disk space.
